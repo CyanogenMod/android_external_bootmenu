@@ -42,9 +42,6 @@ include $(call all-makefiles-under,$(commands_bootmenu_local_path))
 
 include $(CLEAR_VARS)
 
-endif # BOARD_USES_BOOTMENU
-
-
 ############################
 # Standalone version
 
@@ -73,5 +70,6 @@ include $(BUILD_EXECUTABLE)
 
 ###########################
 
+endif # BOARD_USES_BOOTMENU
 endif # !TARGET_SIMULATOR
 endif # TARGET_ARCH arm
