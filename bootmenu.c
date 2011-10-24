@@ -30,6 +30,13 @@
 #include "minui/minui.h"
 #include "bootmenu_ui.h"
 
+#define ITEM_REBOOT          0
+#define ITEM_BOOT            1
+#define ITEM_SYSTEM          2
+#define ITEM_OVERCLOCK       2
+#define ITEM_RECOVERY        3
+#define ITEM_TOOLS           4
+#define ITEM_POWEROFF        5
 
 enum { 
   BUTTON_ERROR,
@@ -45,10 +52,12 @@ static char** main_headers = NULL;
  */
 char** prepend_title(const char** headers) {
 
-  char* title[] = { "Android BootMenu <v"
-                    EXPAND(BOOTMENU_VERSION) ">",
-                    "",
-                    NULL };
+  char* title[] = {
+      "Android Bootmenu <v"
+      EXPAND(BOOTMENU_VERSION) ">",
+      "",
+      NULL
+  };
 
   // count the number of lines in our title, plus the
   // caller-provided headers.
@@ -147,26 +156,34 @@ static void prompt_and_wait() {
     // return one of the core actions handled in the switch
     // statement below.
 
-    if (chosen_item >= 0 && chosen_item <= ITEM_REBOOT) {
+    if (chosen_item >= 0 && chosen_item <= ITEM_POWEROFF) {
 
       switch (chosen_item) {
-      case ITEM_BOOT:
-        if (show_menu_boot()) return; else break;
-#if FULL_VERSION
-      case ITEM_SYSTEM:
-        if (show_menu_system()) return; else break;
-#else
-      case ITEM_OVERCLOCK:
-        if (show_menu_overclock()) return; else break;
-#endif
-      case ITEM_RECOVERY:
-        if (show_menu_recovery()) return; else break;
-      case ITEM_TOOLS:
-        if (show_menu_tools()) return; else break;
       case ITEM_REBOOT:
-        ui_print("Reboot now....\n");
         sync();
         reboot(RB_AUTOBOOT);
+        return;
+      case ITEM_BOOT:
+        if (show_menu_boot()) return;
+        break;
+#if FULL_VERSION
+      case ITEM_SYSTEM:
+        if (show_menu_system()) return;
+        break;
+#else
+      case ITEM_OVERCLOCK:
+        if (show_menu_overclock()) return;
+        break;
+#endif
+      case ITEM_RECOVERY:
+        if (show_menu_recovery()) return;
+        break;
+      case ITEM_TOOLS:
+        if (show_menu_tools()) return;
+        break;
+      case ITEM_POWEROFF:
+        sync();
+        __reboot(LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_POWER_OFF, NULL);
         return;
       }
 
