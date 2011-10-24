@@ -68,13 +68,6 @@ int device_wipe_data();
 
 #define GO_BACK            127
 
-#define ITEM_BOOT            0
-#define ITEM_SYSTEM          1
-#define ITEM_OVERCLOCK       1
-#define ITEM_RECOVERY        2
-#define ITEM_TOOLS           3
-#define ITEM_REBOOT          4
-
 // Header text to display above the main menu.
 extern char* MENU_HEADERS[];
 
