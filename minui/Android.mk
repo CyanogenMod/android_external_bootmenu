@@ -12,7 +12,7 @@ LOCAL_C_INCLUDES +=\
     external/zlib
 
 LOCAL_MODULE := libminui_bm
-LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_TAGS := eng
 
 include $(BUILD_STATIC_LIBRARY)
 
