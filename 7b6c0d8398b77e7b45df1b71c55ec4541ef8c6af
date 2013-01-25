@@ -1,0 +1,8 @@
+Change-Id: I7b6c0d8398b77e7b45df1b71c55ec4541ef8c6af
+Code-Review+2: Danny Baumann <dannybaumann@web.de>
+Verified+1: Danny Baumann <dannybaumann@web.de>
+Submitted-by: Danny Baumann <dannybaumann@web.de>
+Submitted-at: Fri, 25 Jan 2013 05:34:35 -0800
+Reviewed-on: http://review.cyanogenmod.org/27651
+Project: CyanogenMod/android_external_bootmenu
+Branch: refs/heads/gingerbread
